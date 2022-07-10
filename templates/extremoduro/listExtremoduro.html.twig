@@ -1,0 +1,27 @@
+
+
+{% extends 'extremoduro/baseExtremoduro.html.twig' %}
+
+        {% block contenido %}
+                <h2>Albums Extremoduro</h2>
+                {%for message in app.flashes('success') %}
+                    <p>{{message}}</p>
+                {%endfor%}
+           
+                <div class="row row-cols-1 row-cols-md-2">
+                    {% for album in albums %}
+                        <div class="col mb-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{album.image}}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{album.name}}</h5>
+                                    <p class="card-text">{{album.year}}</p>
+                                    <a href="{{path('showAlbum',{"id":album.id})}}" class="btn btn-success">Más Info</a>
+                                    <a href="{{path("editAlbum",{"id":album.id})}}" class="btn btn-warning">Editar</a>
+                                    <a href="{{path("deleteAlbum",{"id":album.id})}}" class="btn btn-danger">Borrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+        {% endblock %}
