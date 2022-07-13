@@ -1,9 +1,28 @@
 
-
-.body{
-    background-color: red;
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+body{
+    background-color: black;
+    background-image: url(../assets/images/fondo.jpg) ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: auto;
+    font-family: 'Special Elite' ;    
+}
+label{
+    color: red;
+    font-size: 20px;
+    
 }
 
-.form{
-    background-color: red;
+h2 {
+    text-align: center;
+    color:red;
+    margin-top: 20px;
+    font-size: 15px;
 }
+
+
+
+
+

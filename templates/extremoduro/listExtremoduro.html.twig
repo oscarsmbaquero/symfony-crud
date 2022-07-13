@@ -3,22 +3,27 @@
 {% extends 'extremoduro/baseExtremoduro.html.twig' %}
 
         {% block contenido %}
-                <h2>Albums Extremoduro</h2>
+                <h2 class ="h2">Discrografia Extremoduro</h2>
+                {# <img height="200px" src="https://i.pinimg.com/originals/2a/48/f9/2a48f9051a4082d317b6b2e545e287d3.jpg"> #}
                 {%for message in app.flashes('success') %}
                     <p>{{message}}</p>
                 {%endfor%}
            
-                <div class="row row-cols-1 row-cols-md-2">
+                <div class="row row-cols-12 row-cols-md-12">
                     {% for album in albums %}
                         <div class="col mb-4">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card" style="width: 20rem;">
                                 <img src="{{album.image}}" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">{{album.name}}</h5>
-                                    <p class="card-text">{{album.year}}</p>
+                                    {# <p class="card-text">{{album.year}}</p> #}
                                     <a href="{{path('showAlbum',{"id":album.id})}}" class="btn btn-success">Más Info</a>
                                     <a href="{{path("editAlbum",{"id":album.id})}}" class="btn btn-warning">Editar</a>
-                                    <a href="{{path("deleteAlbum",{"id":album.id})}}" class="btn btn-danger">Borrar</a>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                      <a href="{{path("deleteAlbum",{"id":album.id})}}" class="btn btn-danger">Borrar</a>
+                                    {% endif %}
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
