@@ -14,9 +14,18 @@ class ExtremoduroType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('year')
-            ->add('image')
+            ->add('name',null,  array(
+                'label' => 'Name', 
+                'attr' => array('style' => 'width: 400px')
+            ))        
+            ->add('year',null,  array(
+                'label' => 'Year', 
+                'attr' => array('style' => 'width: 400px')
+                ))
+            ->add('image',null,  array(
+                'label' => 'Image', 
+                'attr' => array('style' => 'width: 400px')
+                ))
             ->add('enviar', SubmitType::class);
         ;
     }

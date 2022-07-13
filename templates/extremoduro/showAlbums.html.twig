@@ -15,7 +15,7 @@
                         </div>
                         <div class="col">
                            <ul>
-                           {% for song in album.extremoduro.extremoduro_id %}
+                           {% for song in album.getExtremoduro() %}
                            <li>{{song.name}}</li>
                            {% endfor %}
                            </ul>

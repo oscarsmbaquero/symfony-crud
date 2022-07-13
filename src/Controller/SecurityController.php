@@ -49,4 +49,22 @@ class SecurityController extends AbstractController
         return new Response('Usuario creado ok ');
         
     }
+
+    // #[Route("/new/album", name:"newAlbum")]
+    // public function newAlbum(Request $request, EntityManagerInterface $doctrine){
+     
+    //     $form=$this->createForm(ExtremoduroType::class);
+    //     $form->handleRequest($request);
+
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         $album = $form->getData();
+    //         $doctrine->persist($album);
+    //         $doctrine->flush();
+    //         $this->addFlash('success','Insertado correctamente');
+    //         return $this->redirectToRoute('getAlbums');
+            
+    //     }
+    //     return $this->renderForm("extremoduro/newAlbum.html.twig",['AlbumForm'=> $form]);
+      
+    // }
 }

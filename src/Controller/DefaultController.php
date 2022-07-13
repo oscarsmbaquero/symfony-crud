@@ -16,7 +16,7 @@ class DefaultController extends AbstractController
     
     #[Route("/" , name:"home")]
     public function getHome()
-    {          
+    {
       
 
         return $this->render("extremoduro/baseExtremoduro.html.twig");
@@ -26,7 +26,7 @@ class DefaultController extends AbstractController
     /*FUNCION QUE PINTA EL LISTADO DE ALBUMS*/ 
     #[Route("/albums", name:"getAlbums")]
     public function getAlbums(EntityManagerInterface $doctrine)
-    {          
+    {
         $repository=$doctrine->getRepository(Extremoduro::class);
         $albums= $repository->findAll(); 
 

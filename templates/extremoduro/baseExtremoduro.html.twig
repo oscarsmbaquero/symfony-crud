@@ -19,11 +19,20 @@
                     <div class="navbar-nav">
                         <a class="nav-link active "  href="{{path('home')}}">Home <span class="sr-only">(current)</span></a>
                         <a class="nav-link " href="{{path('getAlbums')}}">Listar Albums</a>
-                        <a class="nav-link" href="{{path('newAlbum')}}">Crear Album</a>
+                          {% if is_granted('ROLE_ADMIN') %}
+                             <a class="nav-link" href="{{path('newAlbum')}}">Crear Album</a>
+                          {% endif %}   
                     </div>
                 </div>
                 <div>
-                {% if is_granted('ROLE_USER') %}<h2 class="h2">{{app.user.name}}</h2>{% endif %}
+                {% if is_granted('ROLE_USER') %}<h2 class="h2">{{app.user.name}}</h2>{% endif %}                
+                </div>
+                <div>
+                {% if is_granted('ROLE_USER') %}
+                    <a class="nav-link" href="{{path('app_logout')}}">Logout</a>
+                    {% else %}
+                    <a class="nav-link" href="{{path('app_login')}}">Login</a>
+                {% endif %}
                 </div>
             </nav>
             
