@@ -39,6 +39,17 @@ class SongsRepository extends ServiceEntityRepository
         }
     }
 
+//     public function findByExtremoduroId($brandId)
+// {
+//     $qb = $this->createQueryBuilder('rm');
+//     $qb->where('IDENTITY(rm.songs) = :brandId')
+//        ->setParameter('brandId', $brandId);
+
+//     return $qb->getQuery()->getResult();
+// }
+
+
+
 //    /**
 //     * @return Songs[] Returns an array of Songs objects
 //     */

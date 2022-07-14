@@ -41,7 +41,7 @@ class DefaultController extends AbstractController
             $repository=$doctrine->getRepository(Extremoduro::class);
             $album= $repository->find($id);
             $repository2=$doctrine->getRepository(Songs::class);   
-            $songs= $repository2->findBy(['id'=>$id],['id'=>'ASC']);
+            $songs= $repository2->findBy(['extremoduro'=>$id],['id'=>'ASC']);
 
         return $this->render("extremoduro/showAlbums.html.twig", ["album" => $album, "songs" => $songs]);
     }
