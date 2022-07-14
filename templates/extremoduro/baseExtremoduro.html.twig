@@ -11,7 +11,7 @@
     <body>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#"><img height="35px" src="https://i.pinimg.com/originals/2a/48/f9/2a48f9051a4082d317b6b2e545e287d3.jpg"></a>
+                <a class="navbar-brand" href="#"><img height="50px" src="https://i.pinimg.com/originals/2a/48/f9/2a48f9051a4082d317b6b2e545e287d3.jpg"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -25,14 +25,15 @@
                     </div>
                 </div>
                 <div>
-                {% if is_granted('ROLE_USER') %}<h2 class="h2">{{app.user.name}}</h2>{% endif %}                
+                {% if is_granted('ROLE_USER') %}<p class="h2">{{app.user.name}}</p>{% endif %}                
                 </div>
                 <div>
-                {% if is_granted('ROLE_USER') %}
-                    <a class="nav-link" href="{{path('app_logout')}}">Logout</a>
-                    {% else %}
-                    <a class="nav-link" href="{{path('app_login')}}">Login</a>
-                {% endif %}
+                    {% if is_granted('ROLE_USER') %}
+                        <a class="nav-link text-danger" href="{{path('app_logout')}}">Logout</a>
+                        {% else %}
+                        <a class="nav-link text-success" href="{{path('app_login')}}">Login</a>
+                        <a class="nav-link text-prymary" href="{{path('createuser')}}">Register</a>
+                    {% endif %}
                 </div>
             </nav>
             

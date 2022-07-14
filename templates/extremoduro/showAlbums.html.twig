@@ -2,25 +2,20 @@
     {% extends 'extremoduro/baseExtremoduro.html.twig' %}
         
           {% block contenido %}
-                <div class="container">
-                    <div class="row">
-                        <div class="col text-center">
-                             <h2>{{ album.name }}</h2>
-                        </div>
-                        <div class="col">
-                            <img src="{{ album.image }}">
-                        </div>
-                        <div class="col">
-                           <h2>Year: {{ album.year }}</h2>                            
-                        </div>
-                        <div class="col">
-                           <ul>
-                           {% for song in album.getExtremoduro() %}
-                           <li>{{song.name}}</li>
-                           {% endfor %}
-                           </ul>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <img src="{{ album.image }}">
+                            </div>
+                            <div class="col text-center">
+                                <h2 class="h2">{{ album.name }}</h2>
+                                <ul>
+                                    {% for song in songs %}
+                                        <li><h2 class="h2">{{song.name}}</h2></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
             {% endblock %}
             

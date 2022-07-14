@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Extremoduro;
+use App\Entity\Songs;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\ExtremoduroType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -37,10 +38,12 @@ class DefaultController extends AbstractController
     #[Route("/album/{id}", name:"showAlbum")]
     public function getAlbum($id, EntityManagerInterface $doctrine)
     {
-        $repository=$doctrine->getRepository(Extremoduro::class);
+            $repository=$doctrine->getRepository(Extremoduro::class);
             $album= $repository->find($id);
+            $repository2=$doctrine->getRepository(Songs::class);   
+            $songs= $repository2->findBy(['id'=>$id],['id'=>'ASC']);
 
-        return $this->render("extremoduro/showAlbums.html.twig", ["album" => $album]);
+        return $this->render("extremoduro/showAlbums.html.twig", ["album" => $album, "songs" => $songs]);
     }
 
 

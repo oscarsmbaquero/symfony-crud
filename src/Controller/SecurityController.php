@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,38 +35,41 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
+    
+    //funcion para introducir a fuego un usuario, funciona, pero la comento una vez probada
 
-    #[Route(path: '/insert/user', name: 'app_signup')]
-    public function createUser(EntityManagerInterface $doctrine , UserPasswordHasherInterface $hasher):Response
-    {
-        $user1 = new User();
-        $user1->setUserName('Otto');
-        $user1->setPassword($hasher->hashPassword($user1,'0810'));
-        $user1->setName('Otto');
-        $user1->setRoles(['ROLE_ADMIN']);
+    // #[Route(path: '/insert/user', name: 'app_signup')]
+    // public function createUser(EntityManagerInterface $doctrine , UserPasswordHasherInterface $hasher):Response
+    // {
+    //     $user1 = new User();
+    //     $user1->setUserName('Otto');
+    //     $user1->setPassword($hasher->hashPassword($user1,'0810'));
+    //     $user1->setName('Otto');
+    //     $user1->setRoles(['ROLE_ADMIN']);
 
-        $doctrine->persist($user1);
-        $doctrine->flush();
+    //     $doctrine->persist($user1);
+    //     $doctrine->flush();
 
-        return new Response('Usuario creado ok ');
+    //     return new Response('Usuario creado ok ');
         
-    }
-
-    // #[Route("/new/album", name:"newAlbum")]
-    // public function newAlbum(Request $request, EntityManagerInterface $doctrine){
-     
-    //     $form=$this->createForm(ExtremoduroType::class);
-    //     $form->handleRequest($request);
-
-    //     if($form->isSubmitted() && $form->isValid()){
-    //         $album = $form->getData();
-    //         $doctrine->persist($album);
-    //         $doctrine->flush();
-    //         $this->addFlash('success','Insertado correctamente');
-    //         return $this->redirectToRoute('getAlbums');
-            
-    //     }
-    //     return $this->renderForm("extremoduro/newAlbum.html.twig",['AlbumForm'=> $form]);
-      
     // }
+
+    #[Route("/new/user", name:"createuser")]
+    public function newUser(Request $request, EntityManagerInterface $doctrine, UserPasswordHasherInterface $hasher){
+     
+        $form=$this->createForm(UserType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $user = $form->getData();
+            $user->setPassword($hasher->hashPassword($user, $user->getPassword()));
+            $doctrine->persist($user);
+            $doctrine->flush();
+            $this->addFlash('success','Usuario insertado correctamente');
+            return $this->redirectToRoute('getAlbums');
+            
+        }
+        return $this->renderForm("extremoduro/newUser.html.twig",['userForm'=> $form]);
+      
+    }
 }

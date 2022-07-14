@@ -16,14 +16,15 @@
                                 <img src="{{album.image}}" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">{{album.name}}</h5>
-                                    {# <p class="card-text">{{album.year}}</p> #}
+                                    <p class="card-text">{{album.year}}</p>
                                     <a href="{{path('showAlbum',{"id":album.id})}}" class="btn btn-success">Más Info</a>
+                                     {% if is_granted('ROLE_ADMIN') %}
                                     <a href="{{path("editAlbum",{"id":album.id})}}" class="btn btn-warning">Editar</a>
+                                     {% endif %}
                                     {% if is_granted('ROLE_ADMIN') %}
                                       <a href="{{path("deleteAlbum",{"id":album.id})}}" class="btn btn-danger">Borrar</a>
                                     {% endif %}
-                                    
-                                    
+
                                 </div>
                             </div>
                         </div>

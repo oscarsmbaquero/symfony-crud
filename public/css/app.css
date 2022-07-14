@@ -19,9 +19,14 @@ h2 {
     text-align: center;
     color:red;
     margin-top: 20px;
+    font-size: 10px;
+}
+h1 {
+    text-align: center;
+    color:red;
+    margin-top: 20px;
     font-size: 15px;
 }
-
 
 
 
